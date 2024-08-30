@@ -112,6 +112,28 @@ public:
         length++;
     }
 
+    void deleteFirst()
+    {
+        if (length == 0)
+        {
+            return;
+        }
+
+        Node *temp = head;
+        if (length == 1)
+        {
+            head = nullptr;
+            tail = nullptr;
+        }
+        else
+        {
+            head = head->next;
+        }
+
+        length--;
+        delete temp;
+    }
+
     void printHead()
     {
         cout << "Head: " << head->value << endl;
@@ -136,9 +158,13 @@ int main()
     // myLinkedList->printTail();
     // myLinkedList->printLength();
 
-    myLinkedList->append(5);
+    // myLinkedList->append(5);
 
-    myLinkedList->prepend(0);
+    // myLinkedList->prepend(0);
+
+    myLinkedList->printList();
+
+    myLinkedList->deleteFirst();
 
     myLinkedList->printList();
 
