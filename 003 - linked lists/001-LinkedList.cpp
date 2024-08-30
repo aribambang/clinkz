@@ -96,6 +96,22 @@ public:
         delete temp;
     }
 
+    void prepend(int value)
+    {
+        Node *newNode = new Node(value);
+        if (length == 0)
+        {
+            head = newNode;
+            tail = newNode;
+        }
+        else
+        {
+            newNode->next = head;
+            head = newNode;
+        }
+        length++;
+    }
+
     void printHead()
     {
         cout << "Head: " << head->value << endl;
@@ -122,11 +138,13 @@ int main()
 
     myLinkedList->append(5);
 
-    myLinkedList->printList();
-
-    myLinkedList->deleteLast();
+    myLinkedList->prepend(0);
 
     myLinkedList->printList();
+
+    // myLinkedList->deleteLast();
+
+    // myLinkedList->printList();
 
     // delete myLinkedList;
 };
