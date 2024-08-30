@@ -31,6 +31,15 @@ public:
         length = 1;
     }
 
+    ~LinkedList() {
+        Node *temp = head;
+        while(head) {
+            head = head->next;
+            delete temp;
+            temp = head;
+        }
+    }
+
     void printList()
     {
         Node *temp = head;
@@ -66,4 +75,6 @@ int main()
     myLinkedList->printLength();
 
     myLinkedList->printList();
+
+    delete myLinkedList;
 };
