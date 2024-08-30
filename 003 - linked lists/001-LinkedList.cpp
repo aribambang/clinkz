@@ -31,9 +31,11 @@ public:
         length = 1;
     }
 
-    ~LinkedList() {
+    ~LinkedList()
+    {
         Node *temp = head;
-        while(head) {
+        while (head)
+        {
             head = head->next;
             delete temp;
             temp = head;
@@ -48,6 +50,22 @@ public:
             cout << temp->value << endl;
             temp = temp->next;
         }
+    }
+
+    void append(int value)
+    {
+        Node *newNode = new Node(value);
+        if (length == 0)
+        {
+            head = newNode;
+            tail = newNode;
+        }
+        else
+        {
+            tail->next = newNode;
+            tail = newNode;
+        }
+        length++;
     }
 
     void printHead()
@@ -70,11 +88,13 @@ int main()
 {
     LinkedList *myLinkedList = new LinkedList(2);
 
-    myLinkedList->printHead();
-    myLinkedList->printTail();
-    myLinkedList->printLength();
+    // myLinkedList->printHead();
+    // myLinkedList->printTail();
+    // myLinkedList->printLength();
+
+    myLinkedList->append(5);
 
     myLinkedList->printList();
 
-    delete myLinkedList;
+    // delete myLinkedList;
 };
