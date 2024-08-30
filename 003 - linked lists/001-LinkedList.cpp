@@ -4,17 +4,16 @@ using namespace std;
 
 class Node
 {
-private:
+public:
     int value;
     Node *next;
 
-public:
     Node(int value)
     {
         this->value = value;
         next = nullptr;
     }
-}
+};
 
 class LinkedList
 {
@@ -31,4 +30,40 @@ public:
         tail = newNode;
         length = 1;
     }
-}
+
+    void printList()
+    {
+        Node *temp = head;
+        while (temp != nullptr)
+        {
+            cout << temp->value << endl;
+            temp = temp->next;
+        }
+    }
+
+    void printHead()
+    {
+        cout << "Head: " << head->value << endl;
+    }
+
+    void printTail()
+    {
+        cout << "Tail: " << tail->value << endl;
+    }
+
+    void printLength()
+    {
+        cout << "Length: " << length << endl;
+    }
+};
+
+int main()
+{
+    LinkedList *myLinkedList = new LinkedList(2);
+
+    myLinkedList->printHead();
+    myLinkedList->printTail();
+    myLinkedList->printLength();
+
+    myLinkedList->printList();
+};
