@@ -150,6 +150,18 @@ public:
         return temp;
     }
 
+    bool set(int index, int value)
+    {
+        Node *temp = get(index);
+
+        if (temp)
+        {
+            temp->value = value;
+            return true;
+        }
+        return false;
+    }
+
     void printHead()
     {
         cout << "Head: " << head->value << endl;
@@ -179,10 +191,10 @@ int main()
     // myLinkedList->deleteFirst();
     // myLinkedList->deleteLast();
     // myLinkedList->printList();
+    // cout << myLinkedList->get(1)->value << endl;
 
-    cout << myLinkedList->get(1)->value << endl;
-
-    // myLinkedList->printList();
+    myLinkedList->set(0, 10);
+    myLinkedList->printList();
 
     // delete myLinkedList;
 };
