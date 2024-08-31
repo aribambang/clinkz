@@ -162,6 +162,34 @@ public:
         return false;
     }
 
+    bool insert(int index, int value)
+    {
+        if (index < 0 || index > length)
+        {
+            return false;
+        }
+
+        if (index == 0)
+        {
+            prepend(value);
+            return true;
+        }
+
+        if (index == length)
+        {
+            append(value);
+            return true;
+        }
+
+        Node *newNode = new Node(value);
+        Node *temp = get(index - 1);
+        newNode->next = temp->next;
+        temp->next = newNode;
+        length++;
+
+        return true;
+    }
+
     void printHead()
     {
         cout << "Head: " << head->value << endl;
@@ -180,7 +208,7 @@ public:
 
 int main()
 {
-    LinkedList *myLinkedList = new LinkedList(2);
+    LinkedList *myLinkedList = new LinkedList(0);
 
     // myLinkedList->printHead();
     // myLinkedList->printTail();
@@ -192,8 +220,13 @@ int main()
     // myLinkedList->deleteLast();
     // myLinkedList->printList();
     // cout << myLinkedList->get(1)->value << endl;
+    // myLinkedList->set(0, 10);
+    myLinkedList->append(2);
 
-    myLinkedList->set(0, 10);
+    cout << "before insert" << endl;
+    myLinkedList->printList();
+    myLinkedList->insert(0, 1);
+    cout << "after insert" << endl;
     myLinkedList->printList();
 
     // delete myLinkedList;
