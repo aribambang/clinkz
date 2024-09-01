@@ -164,7 +164,7 @@ public:
 
     bool insert(int index, int value)
     {
-        if (index < 0 || index > length)
+        if (index < 0 || index >= length)
         {
             return false;
         }
@@ -212,6 +212,24 @@ public:
         length--;
     }
 
+    void reverse()
+    {
+        Node *temp = head;
+        head = tail;
+        tail = temp;
+
+        Node *after = temp->next;
+        Node *before = nullptr;
+
+        for (int i = 0; i < length; i++)
+        {
+            after = temp->next;
+            temp->next = before;
+            before = temp;
+            temp = after;
+        }
+    }
+
     void printHead()
     {
         cout << "Head: " << head->value << endl;
@@ -250,8 +268,13 @@ int main()
     myLinkedList->insert(0, 1);
     cout << "after insert" << endl;
     myLinkedList->printList();
-    cout << "after delete" << endl;
-    myLinkedList->deleteNode(0);
+    // cout << "after delete" << endl;
+    // myLinkedList->deleteNode(0);
+    cout << "reverse" << endl;
+    myLinkedList->reverse();
+    myLinkedList->printList();
+    cout << "reverse again" << endl;
+    myLinkedList->reverse();
     myLinkedList->printList();
 
     // delete myLinkedList;
