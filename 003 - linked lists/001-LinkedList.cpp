@@ -192,7 +192,7 @@ public:
 
     void deleteNode(int index)
     {
-        if (index < 0 || index > length)
+        if (index < 0 || index >= length)
         {
             return;
         }
