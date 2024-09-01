@@ -190,6 +190,28 @@ public:
         return true;
     }
 
+    void deleteNode(int index)
+    {
+        if (index < 0 || index > length)
+        {
+            return;
+        }
+        if (index == 0)
+        {
+            return deleteFirst();
+        }
+        if (index == length - 1)
+        {
+            return deleteLast();
+        }
+
+        Node *prev = get(index - 1);
+        Node *temp = prev->next;
+        prev->next = temp->next;
+        delete temp;
+        length--;
+    }
+
     void printHead()
     {
         cout << "Head: " << head->value << endl;
@@ -227,6 +249,9 @@ int main()
     myLinkedList->printList();
     myLinkedList->insert(0, 1);
     cout << "after insert" << endl;
+    myLinkedList->printList();
+    cout << "after delete" << endl;
+    myLinkedList->deleteNode(0);
     myLinkedList->printList();
 
     // delete myLinkedList;
