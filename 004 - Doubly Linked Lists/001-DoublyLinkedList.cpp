@@ -52,6 +52,27 @@ public:
         length++;
     }
 
+    void deleteLast()
+    {
+        if (length == 0)
+        {
+            return;
+        }
+        Node *temp = tail;
+        if (length == 1)
+        {
+            head = nullptr;
+            tail = nullptr;
+        }
+        else
+        {
+            tail = tail->prev;
+            tail->next = nullptr;
+        }
+        delete temp;
+        length--;
+    }
+
     void printList()
     {
         Node *temp = head;
@@ -83,6 +104,10 @@ int main()
     DoublyLinkedList *dll = new DoublyLinkedList(1);
 
     dll->append(2);
+
+    dll->printList();
+
+    dll->deleteLast();
 
     dll->printList();
 }
