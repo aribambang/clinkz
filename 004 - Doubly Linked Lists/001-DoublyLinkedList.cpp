@@ -110,6 +110,30 @@ public:
         length--;
     }
 
+    Node *get(int index)
+    {
+        if (index < 0 || index >= length)
+            return nullptr;
+        Node *temp = head;
+        if (index < length / 2)
+        {
+            for (int i = 0; i < index; i++)
+            {
+                temp = temp->next;
+            }
+        }
+        else
+        {
+            temp = tail;
+            for (int i = length - 1; i > index; --i)
+            {
+                temp = temp->prev;
+            }
+        }
+
+        return temp;
+    }
+
     void printList()
     {
         Node *temp = head;
@@ -153,6 +177,9 @@ int main()
     dll->prepend(3); // [3, 2, 1]
 
     dll->deleteFirst(); // [2, 1]
+
+    cout << "get(0): " << dll->get(0)->value << endl;
+    cout << "get(1): " << dll->get(1)->value << endl;
 
     dll->printList();
 }
