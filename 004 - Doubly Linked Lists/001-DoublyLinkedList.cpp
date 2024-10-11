@@ -73,6 +73,23 @@ public:
         length--;
     }
 
+    void prepend(int value)
+    {
+        Node *newNode = new Node(value);
+        if (length == 0)
+        {
+            head = newNode;
+            tail = newNode;
+        }
+        else
+        {
+            newNode->next = head;
+            head->prev = newNode;
+            head = newNode;
+        }
+        length++;
+    }
+
     void printList()
     {
         Node *temp = head;
@@ -107,7 +124,11 @@ int main()
 
     dll->printList();
 
+    cout << "====" << endl;
+
     dll->deleteLast();
+
+    dll->prepend(2);
 
     dll->printList();
 }
