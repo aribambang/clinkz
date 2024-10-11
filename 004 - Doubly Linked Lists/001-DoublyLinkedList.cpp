@@ -90,6 +90,26 @@ public:
         length++;
     }
 
+    void deleteFirst()
+    {
+        if (length == 0)
+            return;
+        Node *temp = head;
+        if (length == 1)
+        {
+            head = nullptr;
+            tail = nullptr;
+        }
+        else
+        {
+            head = head->next;
+            head->prev = nullptr;
+        }
+
+        delete temp;
+        length--;
+    }
+
     void printList()
     {
         Node *temp = head;
@@ -120,15 +140,19 @@ int main()
 {
     DoublyLinkedList *dll = new DoublyLinkedList(1);
 
-    dll->append(2);
+    dll->append(2); // [1, 2]
 
     dll->printList();
 
     cout << "====" << endl;
 
-    dll->deleteLast();
+    dll->deleteLast(); // [1]
 
-    dll->prepend(2);
+    dll->prepend(2); // [2, 1]
+
+    dll->prepend(3); // [3, 2, 1]
+
+    dll->deleteFirst(); // [2, 1]
 
     dll->printList();
 }
